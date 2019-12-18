@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{49EB9A11-ED25-412A-9416-C124A0CCFB8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnotherJiraRestClient</RootNamespace>
+    <AssemblyName>AnotherJiraRestClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.1.4.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.1.4\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.10\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.12.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.12.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JiraModel\Aggregateprogress.cs" />
+    <Compile Include="JiraModel\ApplicationProperty.cs" />
+    <Compile Include="JiraModel\Attachment.cs" />
+    <Compile Include="JiraModel\Author.cs" />
+    <Compile Include="JiraModel\BasicIssue.cs" />
+    <Compile Include="JiraModel\Comment.cs" />
+    <Compile Include="JiraModel\Comments.cs" />
+    <Compile Include="JiraModel\Component.cs" />
+    <Compile Include="JiraModel\CreateIssue.cs" />
+    <Compile Include="JiraModel\customfield.cs" />
+    <Compile Include="JiraModel\Fields.cs" />
+    <Compile Include="JiraModel\fixversion.cs" />
+    <Compile Include="JiraModel\Issue.cs" />
+    <Compile Include="JiraModel\IssueCreateMeta.cs" />
+    <Compile Include="JiraModel\IssueLink.cs" />
+    <Compile Include="JiraModel\Issues.cs" />
+    <Compile Include="JiraModel\IssueType.cs" />
+    <Compile Include="JiraModel\JiraApiException.cs" />
+    <Compile Include="JiraModel\LinkType.cs" />
+    <Compile Include="JiraModel\NewVersion.cs" />
+    <Compile Include="JiraModel\Priority.cs" />
+    <Compile Include="JiraModel\Progress.cs" />
+    <Compile Include="JiraModel\Project.cs" />
+    <Compile Include="JiraModel\ProjectMeta.cs" />
+    <Compile Include="JiraModel\Resolution.cs" />
+    <Compile Include="JiraModel\Status.cs" />
+    <Compile Include="JiraModel\StatusCategory.cs" />
+    <Compile Include="JiraModel\Subtask.cs" />
+    <Compile Include="JiraModel\Timetracking.cs" />
+    <Compile Include="JiraModel\UpdateVersion.cs" />
+    <Compile Include="JiraModel\Version.cs" />
+    <Compile Include="JiraModel\Votes.cs" />
+    <Compile Include="JiraModel\Watches.cs" />
+    <Compile Include="JiraModel\Worklog.cs" />
+    <Compile Include="JiraModel\Worklogs.cs" />
+    <Compile Include="ResourceUrls.cs" />
+    <Compile Include="JiraAccount.cs" />
+    <Compile Include="JiraClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sendGrid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AnotherJiraRestClient.nuspec" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
