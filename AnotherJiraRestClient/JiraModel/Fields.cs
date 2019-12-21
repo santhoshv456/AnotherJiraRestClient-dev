@@ -8,6 +8,7 @@ namespace AnotherJiraRestClient.JiraModel
         /// Release notes field
         /// </summary>
         public string customfield_10400 { get; set; }
+        public Impact customfield_10049 { get; set; } //Impact
 
         /// <summary>
         /// Available From field
@@ -25,7 +26,6 @@ namespace AnotherJiraRestClient.JiraModel
         public Author reporter { get; set; }
         public int aggregatetimeoriginalestimate { get; set; }
         public string created { get; set; }
-        public string resolved { get; set; }
         public string updated { get; set; }
         public string description { get; set; }
         public Priority priority { get; set; }

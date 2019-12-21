@@ -75,6 +75,7 @@
     <Compile Include="JiraModel\customfield.cs" />
     <Compile Include="JiraModel\Fields.cs" />
     <Compile Include="JiraModel\fixversion.cs" />
+    <Compile Include="JiraModel\Impact.cs" />
     <Compile Include="JiraModel\Issue.cs" />
     <Compile Include="JiraModel\IssueCreateMeta.cs" />
     <Compile Include="JiraModel\IssueLink.cs" />

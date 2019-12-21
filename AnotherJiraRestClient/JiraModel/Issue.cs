@@ -21,7 +21,6 @@
         public const string FIELD_REPORTER = "reporter";
         public const string FIELD_AGGREGATEIMEORIHINALESTIMATE = "aggregatetimeoriginalestimate";
         public const string FIELD_CREATED = "created";
-        public const string FIELD_RESOLVED = "resolved";
         public const string FIELD_UPDATED = "updated";
         public const string FIELD_DESCRIPTION = "description";
         public const string FIELD_PRIORITY = "priority";
