@@ -13,12 +13,12 @@ namespace AnotherJiraRestClient
 {
    public class sendGrid
     {
-        public static async Task Execute(string From,string mailTo,string Msg,string mailCc, string html)
+        public static async Task Execute(string From,string mailTo,string Msg,string mailCc, string html,string sendApiKey)
         {
             try
             {
                 
-                var client = new SendGridClient("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");
+                var client = new SendGridClient(sendApiKey);
                 var msg = new SendGridMessage()
                 {
                     From = new EmailAddress(From,"SLA Alert!"),

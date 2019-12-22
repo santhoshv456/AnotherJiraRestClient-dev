@@ -17,8 +17,7 @@ namespace AnotherJiraRestClient.Sample
         static string mailTo = ConfigurationSettings.AppSettings["mailTo"].ToString();
         static string mailCc = ConfigurationSettings.AppSettings["mailCc"].ToString();
         static string timer = ConfigurationSettings.AppSettings["timer"].ToString();
-
-
+        static string sendGridKey= ConfigurationSettings.AppSettings["sendGridKey"].ToString();
 
         static void Main(string[] args)
         {
@@ -27,10 +26,9 @@ namespace AnotherJiraRestClient.Sample
             aTimer.Interval = Convert.ToInt32(timer);
             aTimer.Enabled = true;
 
-            Console.WriteLine("Press \'q\' to quit the sample.");
+            Console.WriteLine("Press \'q\' and Enter to quit the App...");
             while (Console.Read() != 'q') ;
         }
-
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
@@ -50,13 +48,11 @@ namespace AnotherJiraRestClient.Sample
                     {
                         if (a.fields.assignee == null)
                         {
-                            sendGrid.Execute(mailFrom, mailTo, "Assignee Not Found...", mailCc, constructHtml(a, null)).Wait();
+                            sendGrid.Execute(mailFrom, mailTo, "Assignee Not Found...", mailCc, constructHtml(a, null), sendGridKey).Wait();
                         }
                     }
                 }
             }
-
-
 
             string Jql = "created > -600d and status not in (Closed, Completed, Resolved, Done, Cancelled, Canceled) and type in ('Incident','Alerts') and assignee in  ('aafreen.wahab - ext','abhijeet.babar - ext','jkarana2','jmangapr','soham.ghosh - ext','jgopalpa','sonu.singh - ext','amulya.1.martha - ext','jghoshku','santhoshk.vullakula - ext','gopi.krishna.gaddagunti - ext') and reporter not in ('aafreen.wahab - ext','abhijeet.babar - ext','jkarana2','jmangapr','soham.ghosh - ext','jgopalpa','sonu.singh - ext','amulya.1.martha - ext','jghoshku','santhoshk.vullakula - ext','gopi.krishna.gaddagunti - ext')";
 
@@ -72,19 +68,19 @@ namespace AnotherJiraRestClient.Sample
                             {
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S1") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours < 4)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 4)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 4), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S1") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours > 4)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Alerts", mailCc, constructHtml(a, 4)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Alerts", mailCc, constructHtml(a, 4), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S2") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours < 8)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 8)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 8), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S2") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours > 8)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Alerts", mailCc, constructHtml(a, 8)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Alerts", mailCc, constructHtml(a, 8), sendGridKey).Wait();
                                 }
                             }
                             break;
@@ -92,27 +88,27 @@ namespace AnotherJiraRestClient.Sample
                             {
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S1") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours < 4)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 4)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 4), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S1") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours > 4)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 4)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 4), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S2") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours < 8)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 8)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 8), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S2") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours > 8)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 8)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 8), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S3") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours < 16)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 16)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, constructHtml(a, 16), sendGridKey).Wait();
                                 }
                                 if (a.fields.customfield_10049.value.ToUpper().Contains("S3") && a.fields.resolutiondate == null && DateTime.Now.Subtract(DateTime.Parse(a.fields.created)).Duration().TotalHours > 16)
                                 {
-                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 16)).Wait();
+                                    sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, constructHtml(a, 16), sendGridKey).Wait();
                                 }
                             }
                             break;
