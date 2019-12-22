@@ -13,7 +13,7 @@ namespace AnotherJiraRestClient
 {
    public class sendGrid
     {
-        public static async Task Execute(string From,string mailTo,string Msg,string html)
+        public static async Task Execute(string From,string mailTo,string Msg,string mailCc, string html)
         {
             try
             {
@@ -22,12 +22,12 @@ namespace AnotherJiraRestClient
                 var msg = new SendGridMessage()
                 {
                     From = new EmailAddress(From,"SLA Alert!"),
-                    Subject = "SLA Has Been Breached...",
+                    Subject = "SLA & Resolution Alert!",
                     PlainTextContent = Msg,
                     HtmlContent = html,
                 };
-                msg.AddTo(new EmailAddress(mailTo,"santhosh kumar"));
-                msg.AddCc(new EmailAddress("deepaksingh.mohanta-ext@jci.com", "Deepak"));
+                msg.AddTo(new EmailAddress(mailTo));
+                msg.AddCc(new EmailAddress(mailCc));
                 var response = await client.SendEmailAsync(msg);
             }
             catch (Exception ex)
