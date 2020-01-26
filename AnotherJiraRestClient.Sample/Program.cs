@@ -147,8 +147,10 @@ namespace AnotherJiraRestClient.Sample
                 resolveHtml += " </table> ";
                 slaBreachHtml += " </table> ";
 
-                sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, resolveHtml, sendGridKey).Wait();
-                sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, slaBreachHtml, sendGridKey).Wait();
+
+                SmtpEmail.sendMail(mailFrom,mailTo,mailCc,"SLA Breached for Below Incidents & Alerts",slaBreachHtml);
+               // sendGrid.Execute(mailFrom, mailTo, "Resolution is in Pending...", mailCc, resolveHtml, sendGridKey).Wait();
+               // sendGrid.Execute(mailFrom, mailTo, "SLA Breached for Below Incidents", mailCc, slaBreachHtml, sendGridKey).Wait();
             }
 
             Console.WriteLine("Completed...");
